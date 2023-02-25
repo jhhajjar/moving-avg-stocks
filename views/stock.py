@@ -85,44 +85,50 @@ toggle_and_line_chart = html.Div(
                     className="pretty_container",
                 ),
                 html.Div(
-                    dash_table.DataTable(
-                        columns=[
-                            {"name": "Date", "id": "date_col"},
-                            {"name": "Close Price", "id": "close_col"},
-                            {"name": "Decision", "id": "decision_col"},
-                            {"name": "Percent Difference", "id": "perc_col"},
-                            {"name": "Margin", "id": "margin_col"},
-                        ],
-                        data=[
+                    [
+                        html.H5("Transactions", style={
+                                "text-align": "center"}),
+                        dash_table.DataTable(
+                            columns=[
+                                {"name": "Date", "id": "date_col"},
+                                {"name": "Close Price", "id": "close_col"},
+                                {"name": "Decision", "id": "decision_col"},
+                                {"name": "Percent Difference", "id": "perc_col"},
+                                {"name": "Margin", "id": "margin_col"},
+                            ],
+                            data=[
 
-                        ],
-                        style_cell={'fontSize': 14,
-                                    'font-family': 'sans-serif'},
-                        style_header={
-                            'textAlign': 'center',
-                            'fontWeight': 'bold',
-                            'color': 'white',
-                            'background-color': '#4d4d4d'
-                        },
-                        style_data={
-                            'textAlign': 'center'
-                        },
-                        style_data_conditional=[
-                            {
-                                'if': {
-                                    'filter_query': '{decision_col} = "buy"',
-                                },
-                                'backgroundColor': "#B3E6B5",
+                            ],
+                            style_cell={'fontSize': 14,
+                                        'font-family': 'sans-serif'},
+                            style_header={
+                                'textAlign': 'center',
+                                'fontWeight': 'bold',
+                                'color': 'white',
+                                'background-color': '#4d4d4d'
                             },
-                            {
-                                'if': {
-                                    'filter_query': '{decision_col} = "sell"',
+                            style_data={
+                                'textAlign': 'center'
+                            },
+                            style_data_conditional=[
+                                {
+                                    'if': {
+                                        'filter_query': '{decision_col} = "buy"',
+                                    },
+                                    'backgroundColor': "#B3E6B5",
+                                    'color': 'black'
                                 },
-                                'backgroundColor': "#D99090",
-                            }
-                        ],
-                        id="dec_table"
-                    ),
+                                {
+                                    'if': {
+                                        'filter_query': '{decision_col} = "sell"',
+                                    },
+                                    'backgroundColor': "#D99090",
+                                    'color': 'black'
+                                }
+                            ],
+                            id="dec_table"
+                        ),
+                    ],
                     className="pretty_container"
                 )
             ],
@@ -166,7 +172,6 @@ def params_update(ticker, start_date, end_date, short_avg, long_avg, investment_
     # make the table
     percs = calc_percents(initial_price, intersections)
     intersections['percs'] = percs
-    print(intersections)
 
     ms = get_margins(investment_amount, intersections)
     margins = ms
