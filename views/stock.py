@@ -134,7 +134,7 @@ toggle_and_line_chart = html.Div(
             ],
             id="right-column",
             className="eight columns",
-            style={"overflow": "scroll"}
+            style={"overflow-y": "auto", "maxHeight": "80vh"}
         ),
     ],
     className="row container-display",
@@ -173,10 +173,7 @@ def params_update(ticker, start_date, end_date, short_avg, long_avg, investment_
     percs = calc_percents(initial_price, intersections)
     intersections['percs'] = percs
 
-    ms = get_margins(investment_amount, intersections)
-    margins = ms
-    margins = np.array(margins)
-    intersections['margins'] = [0] + margins
+    intersections['margins'] = get_margins(investment_amount, intersections)
     table_data = [
         {
             "date_col": i,
