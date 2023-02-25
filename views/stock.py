@@ -70,7 +70,7 @@ toggle_and_line_chart = html.Div(
                             className="row flex"
                         ),
                         html.P("Investment amount:"),
-                        dcc.Input(100, type="number", id="investment_amount")
+                        dcc.Input(350, type="number", id="investment_amount")
                     ],
                     className="pretty_container",
                 ),
@@ -86,8 +86,10 @@ toggle_and_line_chart = html.Div(
                 ),
                 html.Div(
                     [
-                        html.H5("Transactions", style={
-                                "text-align": "center"}),
+                        html.H5(
+                            "Transactions",
+                            style={"text-align": "center"}
+                        ),
                         dash_table.DataTable(
                             columns=[
                                 {"name": "Date", "id": "date_col"},
@@ -108,19 +110,24 @@ toggle_and_line_chart = html.Div(
                                 'background-color': '#4d4d4d'
                             },
                             style_data={
-                                'textAlign': 'center'
+                                'textAlign': 'center',
+                                'color': 'white',
+                                'background-color': '#4d4d4d'
                             },
                             style_data_conditional=[
                                 {
                                     'if': {
-                                        'filter_query': '{decision_col} = "buy"',
+                                        'filter_query': '{margin_col} > 0',
+                                        'column_id': 'perc_col'
                                     },
                                     'backgroundColor': "#B3E6B5",
                                     'color': 'black'
                                 },
+                                # ],
                                 {
                                     'if': {
-                                        'filter_query': '{decision_col} = "sell"',
+                                        'filter_query': '{margin_col} < 0',
+                                        'column_id': 'perc_col'
                                     },
                                     'backgroundColor': "#D99090",
                                     'color': 'black'
@@ -168,19 +175,19 @@ def params_update(ticker, start_date, end_date, short_avg, long_avg, investment_
     # get the initial price from the data (this will be exactly at start date)
     initial_price = full_data['Close'].values[0]
     graph = multi_line_plot(ticker, full_data, intersections)
-
-    # make the table
+    # get the margins for each transaction
     percs = calc_percents(initial_price, intersections)
     intersections['percs'] = percs
-
     intersections['margins'] = get_margins(investment_amount, intersections)
+    # round for display
+    # intersections.values = np.round(intersections.values, 2)
     table_data = [
         {
-            "date_col": i,
-            "close_col":   row["Close"],
+            "date_col": i.date(),
+            "close_col":    f"${np.round(row['Close'], 2)}",
             "decision_col": row["decision"],
-            "perc_col":   row["percs"],
-            "margin_col": row["margins"],
+            "perc_col":     f'{np.round(row["percs"]* 100, 2)}%',
+            "margin_col":   np.round(row["margins"], 2),
         }
         for i, row in intersections.iterrows()
     ]
