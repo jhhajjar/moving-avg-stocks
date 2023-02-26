@@ -4,18 +4,6 @@ header = html.Div(
     [
         html.Div(
             [
-                html.A(
-                    html.Img(
-                        src=r'assets/Dataesg_logo.png',
-                        id="plotly-image",
-                        style={
-                            "height": "40px",
-                            "width": "auto",
-                            "margin-bottom": "25px",
-                        },
-                    ),
-                    href="https://dataesg.com/"
-                ),
             ],
             className="one-third column",
         ),
@@ -42,7 +30,7 @@ header = html.Div(
             [
                 html.A(
                     html.Button("Learn More", id="learn-more-button"),
-                    href="https://dataesg.com/contact-us",
+                    href="https://www.investopedia.com/articles/active-trading/052014/how-use-moving-average-buy-stocks.asp",
                 )
             ],
             className="one-third column",
