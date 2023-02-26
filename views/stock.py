@@ -163,7 +163,7 @@ toggle_and_line_chart = html.Div(
     ]
 )
 def params_update(ticker, start_date, end_date, short_avg, long_avg, investment_amount):
-    if not ticker:
+    if not (ticker and start_date and end_date and short_avg and long_avg and investment_amount):
         raise PreventUpdate
 
     # get stock data
