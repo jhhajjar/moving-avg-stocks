@@ -2,7 +2,6 @@ import pandas as pd
 import numpy as np
 import plotly.express as px
 import yfinance as yf
-import datetime
 
 
 def get_data(ticker_string, start, end):
@@ -20,20 +19,6 @@ def add_avgs(data, short_avg, long_avg):
     df = pd.concat((short.rename("Short"), long.rename("Long"), data), axis=1)
     df.dropna(inplace=True)
     return df
-
-
-def process_end(date, long_average):
-    # convert date to datetime
-    date_dt = datetime.datetime.strptime(date, "%Y-%m-%d")
-    # do math
-
-    from pandas.tseries.holiday import USFederalHolidayCalendar
-    from pandas.tseries.offsets import CustomBusinessDay
-    US_BUSINESS_DAY = CustomBusinessDay(calendar=USFederalHolidayCalendar())
-    date_dt = date_dt - long_average * US_BUSINESS_DAY
-    # convert back to string
-    date = date_dt.strftime("%Y-%m-%d")
-    return date
 
 
 def calc_percents(starting_price, prices):
@@ -128,11 +113,12 @@ def multi_line_plot(name, data, intersections):
     fig = px.line(data, x=data.index, y=data.columns[:3])
     for date, row in intersections.iterrows():
         if row['decision'] == 'sell':
-            fig.add_vline(x=date, line_width=3,
-                          line_dash="dash", line_color="red")
+            line_color = "red"
         elif row['decision'] == 'buy':
-            fig.add_vline(x=date, line_width=3,
-                          line_dash="dash", line_color="green")
+            line_color = "green"
+
+        fig.add_vline(x=date, line_width=3, line_dash="dash",
+                      line_color=line_color)
 
     fig.update_layout(
         title=f"{name} Chart",

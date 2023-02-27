@@ -1,10 +1,8 @@
-import dash_bootstrap_components as dbc
 import numpy as np
-import pandas as pd
 from dash.exceptions import PreventUpdate
 from datetime import date, datetime
-from utils import get_data, multi_line_plot, find_intersections, add_avgs, calc_percents, get_margins, process_end
-from dash import Input, Output, State, callback, dcc, html, dash_table
+from utils import get_data, multi_line_plot, find_intersections, add_avgs, calc_percents, get_margins
+from dash import Input, Output, callback, dcc, html, dash_table
 
 toggle_and_line_chart = html.Div(
     [
@@ -69,11 +67,31 @@ toggle_and_line_chart = html.Div(
                             ],
                             className="row flex"
                         ),
-                        html.P("Investment amount:"),
-                        dcc.Input(350, type="number", id="investment_amount")
+                        html.Div(
+                            [
+                                html.Div([
+                                    html.P("Investment amount:"),
+                                    dcc.Input(500, type="number",
+                                              id="investment_amount")
+                                ],
+                                    style={"float": "left"}
+                                ),
+                                html.Div([
+                                    html.P("End amount:"),
+                                    dcc.Input("", type="number",
+                                              id="end_amount", disabled=True)
+                                ],
+                                    style={"float": "right"}
+                                ),
+                            ],
+                            className="row flex"
+                        )
                     ],
                     className="pretty_container",
                 ),
+                # html.Div(
+                #     html.P("You turned")
+                # )
             ],
             className="four columns",
         ),
@@ -123,7 +141,6 @@ toggle_and_line_chart = html.Div(
                                     'backgroundColor': "#B3E6B5",
                                     'color': 'black'
                                 },
-                                # ],
                                 {
                                     'if': {
                                         'filter_query': '{margin_col} < 0',
@@ -152,6 +169,7 @@ toggle_and_line_chart = html.Div(
     [
         Output("main_graph", "figure"),
         Output("dec_table", "data"),
+        Output("end_amount", "value")
     ],
     [
         Input('ticker-dropdown', 'value'),
@@ -192,4 +210,9 @@ def params_update(ticker, start_date, end_date, short_avg, long_avg, investment_
         for i, row in intersections.iterrows()
     ]
 
-    return [graph, table_data]
+    end_amount = intersections['margins'].values.cumsum(
+    )[-1].round(2) + investment_amount
+
+    return [graph, table_data, end_amount]
+
+    # TODO: melt the data table
