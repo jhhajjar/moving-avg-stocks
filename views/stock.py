@@ -1,7 +1,8 @@
 import numpy as np
 from dash.exceptions import PreventUpdate
+from utils.graph import multi_line_plot
+from utils.utils import get_data, find_intersections, add_avgs, melt_intersections
 from datetime import date, datetime
-from utils import get_data, multi_line_plot, find_intersections, add_avgs, calc_percents, get_margins, melt_intersections
 from dash import Input, Output, callback, dcc, html, dash_table
 
 toggle_and_line_chart = html.Div(
