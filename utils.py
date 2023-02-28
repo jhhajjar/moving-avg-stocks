@@ -71,6 +71,36 @@ def get_margins(initial_investment, percs):
     return margins
 
 
+# I need these columns:
+# buy date, close on buy, sell date, close on sell, percent_diff, margin
+def melt_intersections(intersection_dates, stock_data, initial_investment):
+    # loop through dates
+    rows = []
+    for i, date in enumerate(intersection_dates):
+        if i % 2 == 0:
+            # we are buying
+            buy_date = date
+            buy_close_price = stock_data.loc[buy_date]
+        elif i % 2 != 0:
+            # we are selling
+            sell_date = date
+            sell_close_price = stock_data.loc[sell_date]
+
+            # do the calculations (for every sell there must be a buy)
+            percent = (sell_close_price - buy_close_price) / buy_close_price
+            # margin
+            margin = initial_investment * percent
+
+            row = [buy_date, buy_close_price, sell_date,
+                   sell_close_price, percent, margin]
+            rows.append(row)
+
+    cols = ["buy_date", "buy_price", "sell_date",
+            "sell_price", "percent", "margin"]
+
+    return pd.DataFrame(data=rows, columns=cols)
+
+
 def format_line_figure(fig):
     fig.update_layout(
         xaxis_title="",

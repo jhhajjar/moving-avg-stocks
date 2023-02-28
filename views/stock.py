@@ -1,7 +1,7 @@
 import numpy as np
 from dash.exceptions import PreventUpdate
 from datetime import date, datetime
-from utils import get_data, multi_line_plot, find_intersections, add_avgs, calc_percents, get_margins
+from utils import get_data, multi_line_plot, find_intersections, add_avgs, calc_percents, get_margins, melt_intersections
 from dash import Input, Output, callback, dcc, html, dash_table
 
 toggle_and_line_chart = html.Div(
@@ -78,7 +78,7 @@ toggle_and_line_chart = html.Div(
                                 ),
                                 html.Div([
                                     html.P("End amount:"),
-                                    dcc.Input("", type="number",
+                                    dcc.Input("", type="text",
                                               id="end_amount", disabled=True)
                                 ],
                                     style={"float": "right"}
@@ -110,10 +110,11 @@ toggle_and_line_chart = html.Div(
                         ),
                         dash_table.DataTable(
                             columns=[
-                                {"name": "Date", "id": "date_col"},
-                                {"name": "Close Price", "id": "close_col"},
-                                {"name": "Decision", "id": "decision_col"},
-                                {"name": "Percent Difference", "id": "perc_col"},
+                                {"name": "Buy Date", "id": "buy_date_col"},
+                                {"name": "Buy Price", "id": "buy_price_col"},
+                                {"name": "Sell Date", "id": "sell_date_col"},
+                                {"name": "Sell Price", "id": "sell_price_col"},
+                                {"name": "Percent", "id": "percent_col"},
                                 {"name": "Margin", "id": "margin_col"},
                             ],
                             data=[
@@ -136,7 +137,6 @@ toggle_and_line_chart = html.Div(
                                 {
                                     'if': {
                                         'filter_query': '{margin_col} > 0',
-                                        'column_id': 'perc_col'
                                     },
                                     'backgroundColor': "#B3E6B5",
                                     'color': 'black'
@@ -144,7 +144,6 @@ toggle_and_line_chart = html.Div(
                                 {
                                     'if': {
                                         'filter_query': '{margin_col} < 0',
-                                        'column_id': 'perc_col'
                                     },
                                     'backgroundColor': "#D99090",
                                     'color': 'black'
@@ -193,26 +192,26 @@ def params_update(ticker, start_date, end_date, short_avg, long_avg, investment_
     # get the initial price from the data (this will be exactly at start date)
     initial_price = full_data['Close'].values[0]
     graph = multi_line_plot(ticker, full_data, intersections)
-    # get the margins for each transaction
-    percs = calc_percents(initial_price, intersections)
-    intersections['percs'] = percs
-    intersections['margins'] = get_margins(investment_amount, intersections)
+    # get the table for each transaction
+    transactions_table = melt_intersections(
+        intersections.index, full_data["Close"], investment_amount)
+
     # round for display
-    # intersections.values = np.round(intersections.values, 2)
     table_data = [
         {
-            "date_col": i.date(),
-            "close_col":    f"${np.round(row['Close'], 2)}",
-            "decision_col": row["decision"],
-            "perc_col":     f'{np.round(row["percs"]* 100, 2)}%',
-            "margin_col":   np.round(row["margins"], 2),
+            "buy_date_col":     row["buy_date"].date(),
+            "buy_price_col":    f"${np.round(row['buy_price'], 2)}",
+            "sell_date_col":    row["sell_date"].date(),
+            "sell_price_col":   f"${np.round(row['sell_price'], 2)}",
+            "percent_col":      f"{np.round(100*    row['percent'], 2)}%",
+            "margin_col":       np.round(row["margin"], 2),
         }
-        for i, row in intersections.iterrows()
+        for _, row in transactions_table.iterrows()
     ]
 
-    end_amount = intersections['margins'].values.cumsum(
+    end_amount = transactions_table['margin'].values.cumsum(
     )[-1].round(2) + investment_amount
 
-    return [graph, table_data, end_amount]
+    return [graph, table_data, f'{end_amount}']
 
     # TODO: melt the data table
