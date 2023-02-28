@@ -1,7 +1,7 @@
 import numpy as np
 from dash.exceptions import PreventUpdate
 from utils.graph import multi_line_plot
-from utils.utils import get_data, find_intersections, add_avgs, melt_intersections
+from utils.utils import get_data, find_intersections, add_avgs, melt_intersections, read_tickers
 from datetime import date, datetime
 from dash import Input, Output, callback, dcc, html, dash_table
 
@@ -15,9 +15,9 @@ toggle_and_line_chart = html.Div(
                     [
                         html.P("Choose TICKER:", className="control_label"),
                         dcc.Dropdown(
-                            id="ticker-dropdown",
-                            value="TSLA",
-                            options=["TSLA", "MSFT", "VTI", "FL"],
+                            id="ticker_dropdown",
+                            value="",
+                            options=[],
                             multi=False,
                             className="dcc_control dropdown_black",
                             style={"color": "black"},
@@ -167,12 +167,25 @@ toggle_and_line_chart = html.Div(
 
 @callback(
     [
+        Output("ticker_dropdown", "options"),
+        Output("ticker_dropdown", "value")
+    ],
+    Input("dataframe", "data")
+)
+def get_ticker_options(_):
+    tickers = read_tickers()
+    ticker = tickers[0]
+    return tickers, ticker
+
+
+@callback(
+    [
         Output("main_graph", "figure"),
         Output("dec_table", "data"),
         Output("end_amount", "value")
     ],
     [
-        Input('ticker-dropdown', 'value'),
+        Input('ticker_dropdown', 'value'),
         Input("start-date", "date"),
         Input("end-date", "date"),
         Input("short_average", "value"),
@@ -184,6 +197,8 @@ def params_update(ticker, start_date, end_date, short_avg, long_avg, investment_
     if not (ticker and start_date and end_date and short_avg and long_avg and investment_amount):
         raise PreventUpdate
 
+    # process ticker
+    ticker = ticker.split('-')[0].strip()
     # get stock data
     data = get_data(ticker, start_date, end_date)
     # add the short and long moving averages (this moves start date to start date + long_avg)
@@ -191,7 +206,6 @@ def params_update(ticker, start_date, end_date, short_avg, long_avg, investment_
     # find all of the intersections (this adds)
     intersections = find_intersections(full_data)
     # get the initial price from the data (this will be exactly at start date)
-    initial_price = full_data['Close'].values[0]
     graph = multi_line_plot(ticker, full_data, intersections)
     # get the table for each transaction
     transactions_table = melt_intersections(

@@ -3,6 +3,16 @@ import numpy as np
 import yfinance as yf
 
 
+def read_tickers():
+    with open("data/us_symbols.csv", "r") as f:
+        lines = f.readlines()
+
+    rows = [
+        f"{line.split(',')[0]} - {line.split(',')[1]} ({line.split(',')[2].strip()})" for line in lines]
+
+    return rows
+
+
 def get_data(ticker_string, start, end):
     data = yf.download(ticker_string, start=start, end=end)
     return data['Close']
