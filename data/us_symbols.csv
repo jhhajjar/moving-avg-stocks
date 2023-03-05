@@ -209,8 +209,6 @@ AKAM,Akamai Technologies Inc.,NASDAQ
 AKAN,Akanda Corp.,NASDAQ
 AKBA,Akebia Therapeutics Inc.,NASDAQ
 AKLI,Akili Inc.,NASDAQ
-AKO.A,Embotelladora Andina S.A.,NYSE
-AKO.B,Embotelladora Andina S.A.,NYSE
 AKR,Acadia Realty Trust,NYSE
 AKRO,Akero Therapeutics Inc.,NASDAQ
 AKTS,Akoustis Technologies Inc.,NASDAQ
@@ -702,8 +700,6 @@ BEP,Brookfield Renewable Partners L.P. ,NYSE
 BEPC,Brookfield Renewable Corporation,NYSE
 BERY,Berry Global Group Inc.,NYSE
 BEST,BEST Inc.,NYSE
-BF.A,Brown Forman Corporation,NYSE
-BF.B,Brown Forman Corporation,NYSE
 BFAC,Battery Future Acquisition Corp.,NYSE
 BFAM,Bright Horizons Family Solutions Inc.,NYSE
 BFC,Bank First Corporation,NASDAQ
@@ -750,7 +746,6 @@ BILI,Bilibili Inc.,NASDAQ
 BILL,Bill.com Holdings Inc.,NYSE
 BIMI,BIMI International Medical Inc.,NASDAQ
 BIO,Bio-Rad Laboratories Inc.,NYSE
-BIO.B,Bio-Rad Laboratories Inc.,NYSE
 BIOC,Biocept Inc.,NASDAQ
 BIOL,Biolase Inc.,NASDAQ
 BIOR,Biora Therapeutics Inc.,NASDAQ
@@ -880,8 +875,6 @@ BRFH,Barfresh Food Group Inc.,NASDAQ
 BRFS,BRF S.A.,NYSE
 BRID,Bridgford Foods Corporation,NASDAQ
 BRIV,B. Riley Principal 250 Merger Corp.,NASDAQ
-BRK.A,Berkshire Hathaway Inc.,NYSE
-BRK.B,Berkshire Hathaway Inc.,NYSE
 BRKH,BurTech Acquisition Corp.,NASDAQ
 BRKL,Brookline Bancorp Inc.,NASDAQ
 BRKR,Bruker Corporation,NASDAQ
@@ -1361,8 +1354,6 @@ CRBP,Corbus Pharmaceuticals Holdings Inc.,NASDAQ
 CRBU,Caribou Biosciences Inc.,NASDAQ
 CRC,California Resources Corporation,NYSE
 CRCT,Cricut Inc.,NASDAQ
-CRD.A,Crawford & Company,NYSE
-CRD.B,Crawford & Company,NYSE
 CRDF,Cardiff Oncology Inc.,NASDAQ
 CRDL,Cardiol Therapeutics Inc.,NASDAQ
 CRDO,Credo Technology Group Holding Ltd,NASDAQ
@@ -1860,7 +1851,6 @@ EQ,Equillium Inc.,NASDAQ
 EQBK,Equity Bancshares Inc.,NASDAQ
 EQC,Equity Commonwealth,NYSE
 EQH,Equitable Holdings Inc.,NYSE
-EQH.A,Equitable Holdings Inc.,NYSE
 EQIX,Equinix Inc.,NASDAQ
 EQNR,Equinor ASA,NYSE
 EQR,Equity Residential,NYSE
@@ -2507,7 +2497,6 @@ HE,Hawaiian Electric Industries Inc.,NYSE
 HEAR,Turtle Beach Corporation,NASDAQ
 HEES,H&E Equipment Services Inc.,NASDAQ
 HEI,Heico Corporation,NYSE
-HEI.A,Heico Corporation,NYSE
 HELE,Helen of Troy Limited,NASDAQ
 HEP,Holly Energy Partners L.P.,NYSE
 HEPA,Hepion Pharmaceuticals Inc.,NASDAQ
@@ -2652,7 +2641,6 @@ HUT,Hut 8 Mining Corp.,NASDAQ
 HUYA,HUYA Inc.,NYSE
 HVBC,HV Bancorp Inc.,NASDAQ
 HVT,Haverty Furniture Companies Inc.,NYSE
-HVT.A,Haverty Furniture Companies Inc.,NYSE
 HWBK,Hawthorn Bancshares Inc.,NASDAQ
 HWC,Hancock Whitney Corporation,NASDAQ
 HWEL,Healthwell Acquisition Corp. I,NASDAQ
@@ -3667,7 +3655,7 @@ MYPS,PLAYSTUDIOS Inc. ,NASDAQ
 MYRG,MYR Group Inc.,NASDAQ
 MYSZ,My Size Inc.,NASDAQ
 MYTE,MYT Netherlands Parent B.V.,NYSE
-NA,Nano Labs Ltd,NASDAQ
+,Nano Labs Ltd,NASDAQ
 NAAC,North Atlantic Acquisition Corporation,NASDAQ
 NAAS,NaaS Technology Inc.,NASDAQ
 NABL,N-able Inc.,NYSE
@@ -3892,7 +3880,6 @@ NVVE,Nuvve Holding Corp.,NASDAQ
 NVX,NOVONIX Limited,NASDAQ
 NWBI,Northwest Bancshares Inc.,NASDAQ
 NWE,NorthWestern Corporation,NASDAQ
-NWFL,Norwood Financial Corp.,NASDAQ
 NWG,NatWest Group plc,NYSE
 NWL,Newell Brands Inc.,NASDAQ
 NWLI,National Western Life Group Inc.,NASDAQ
@@ -4899,7 +4886,6 @@ SKYX,SKYX Platforms Corp.,NASDAQ
 SLAB,Silicon Laboratories Inc.,NASDAQ
 SLAC,Social Leverage Acquisition Corp I,NASDAQ
 SLACU,Social Leverage Acquisition Corp I,NASDAQ
-SLACW,Social Leverage Acquisition Corp I Redeemable warrants each whole warrant exercisable for one share of,NASDAQ
 SLAM,Slam Corp.,NASDAQ
 SLB,Schlumberger N.V.,NYSE
 SLCA,U.S. Silica Holdings Inc.,NYSE
@@ -5035,7 +5021,6 @@ SPWR,SunPower Corporation,NASDAQ
 SPXC,SPX Technologies Inc.,NYSE
 SQ,Block Inc.,NYSE
 SQFT,Presidio Property Trust Inc.,NASDAQ
-SQFTW,Presidio Property Trust Inc.,NASDAQ
 SQL,SeqLL Inc.,NASDAQ
 SQM,Sociedad Quimica y Minera S.A.,NYSE
 SQNS,Sequans Communications S.A.,NYSE
@@ -5285,7 +5270,6 @@ THCP,Thunder Bridge Capital Partners IV Inc.,NASDAQ
 THFF,First Financial Corporation Indiana,NASDAQ
 THG,Hanover Insurance Group Inc,NYSE
 THM,International Tower Hill Mines Ltd.,AMEX
-THMO,ThermoGenesis Holdings Inc.,NASDAQ
 THO,Thor Industries Inc.,NYSE
 THR,Thermon Group Holdings Inc.,NYSE
 THRD,Third Harmonic Bio Inc.,NASDAQ
@@ -5333,7 +5317,6 @@ TMDX,TransMedics Group Inc.,NASDAQ
 TME,Tencent Music Entertainment Group,NYSE
 TMHC,Taylor Morrison Home Corporation,NYSE
 TMKR,Tastemaker Acquisition Corp.,NASDAQ
-TMKRW,Tastemaker Acquisition Corp.,NASDAQ
 TMO,Thermo Fisher Scientific Inc,NYSE
 TMP,Tompkins Financial Corporation,AMEX
 TMPO,Tempo Automation Holdings Inc.,NASDAQ
@@ -5869,7 +5852,6 @@ WSC,WillScot Mobile Mini Holdings Corp.,NASDAQ
 WSFS,WSFS Financial Corporation,NASDAQ
 WSM,Williams-Sonoma Inc.,NYSE
 WSO,Watsco Inc.,NYSE
-WSO.B,Watsco Inc.,NYSE
 WSR,Whitestone REIT,NYSE
 WST,West Pharmaceutical Services Inc.,NYSE
 WT,WisdomTree Inc.,NYSE
@@ -5879,7 +5861,6 @@ WTFC,Wintrust Financial Corporation,NASDAQ
 WTI,W&T Offshore Inc.,NYSE
 WTM,White Mountains Insurance Group Ltd.,NYSE
 WTMA,Welsbach Technology Metals Acquisition Corp.,NASDAQ
-WTMAR,Welsbach Technology Metals Acquisition Corp. one right to receive 1/10th of a share of,NASDAQ
 WTRG,Essential Utilities Inc.,NYSE
 WTS,Watts Water Technologies Inc.,NYSE
 WTT,Wireless Telecom Group  Inc.,AMEX
@@ -5978,7 +5959,6 @@ ZEPP,Zepp Health Corporation,NYSE
 ZEST,Ecoark Holdings Inc.,NASDAQ
 ZETA,Zeta Global Holdings Corp.,NYSE
 ZEUS,Olympic Steel Inc.,NASDAQ
-ZEV,Lightning eMotors Inc,NYSE
 ZFOX,ZeroFox Holdings Inc.,NASDAQ
 ZG,Zillow Group Inc.,NASDAQ
 ZGN,Ermenegildo Zegna N.V.,NYSE
