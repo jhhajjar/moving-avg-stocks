@@ -225,8 +225,6 @@ def params_update(ticker, start_date, end_date, short_avg, long_avg, investment_
     ]
 
     end_amount = transactions_table['margin'].values.cumsum(
-    )[-1].round(2) + investment_amount
+    )[-1].round(2) + investment_amount if transactions_table.values.shape[0] > 0 else investment_amount
 
     return [graph, table_data, f'{end_amount}']
-
-    # TODO: melt the data table

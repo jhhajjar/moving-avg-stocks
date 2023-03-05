@@ -54,6 +54,8 @@ def find_intersections(df):
 
     # remove the first buy (we'll buy at the start of the date)
     intersections = df[df.index.isin(dates_where_cross)]
+    if intersections.shape[0] == 0:
+        return pd.DataFrame(columns=["Close", 'decision'])
     if intersections['decision'].values[0] == 'buy':
         intersections = intersections.iloc[1:]
     intersections = intersections[['Close', 'decision']]
