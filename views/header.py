@@ -28,10 +28,10 @@ header = html.Div(
         ),
         html.Div(
             [
-                # html.A(
-                #     html.Button("Learn More", id="learn-more-button"),
-                #     href="https://www.investopedia.com/articles/active-trading/052014/how-use-moving-average-buy-stocks.asp",
-                # )
+                html.A(
+                    html.Button("Learn More", id="learn-more-button"),
+                    href="https://www.investopedia.com/articles/active-trading/052014/how-use-moving-average-buy-stocks.asp",
+                )
             ],
             className="one-third column",
             id="button"

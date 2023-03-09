@@ -1,18 +1,13 @@
 # Run this app with `python app.py` and
 # visit http://127.0.0.1:8050/ in your web browser.
-from dash import Dash, html, dcc, page_container, Input, Output
-import pandas as pd
-from views.stock import toggle_and_line_chart
 from views.header import header
+from views.stock import toggle_and_line_chart
+from dash import Dash, html
 
 # DEFINE APP
-external_stylesheet = 'https://codepen.io/chriddyp/pen/bWLwgP.css'
-BS = "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 app = Dash(
     __name__,
-    meta_tags=[{"name": "viewport", "content": "width=device-width"}],
-    # use_pages=True,
-    # external_stylesheets=[external_stylesheet, BS]
+    meta_tags=[{"name": "viewport", "content": "width=device-width"}]
 )
 
 application = app.server

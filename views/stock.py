@@ -89,10 +89,7 @@ toggle_and_line_chart = html.Div(
                         )
                     ],
                     className="pretty_container",
-                ),
-                # html.Div(
-                #     html.P("You turned")
-                # )
+                )
             ],
             className="four columns",
         ),
@@ -170,6 +167,7 @@ toggle_and_line_chart = html.Div(
         Output("ticker_dropdown", "options"),
         Output("ticker_dropdown", "value")
     ],
+    # dummy input because we want this to load on first go
     Input("dataframe", "data")
 )
 def get_ticker_options(_):
@@ -218,7 +216,7 @@ def params_update(ticker, start_date, end_date, short_avg, long_avg, investment_
             "buy_price_col":    f"${np.round(row['buy_price'], 2)}",
             "sell_date_col":    row["sell_date"].date(),
             "sell_price_col":   f"${np.round(row['sell_price'], 2)}",
-            "percent_col":      f"{np.round(100*    row['percent'], 2)}%",
+            "percent_col":      f"{np.round(100 * row['percent'], 2)}%",
             "margin_col":       np.round(row["margin"], 2),
         }
         for _, row in transactions_table.iterrows()
@@ -227,4 +225,4 @@ def params_update(ticker, start_date, end_date, short_avg, long_avg, investment_
     end_amount = transactions_table['margin'].values.cumsum(
     )[-1].round(2) + investment_amount if transactions_table.values.shape[0] > 0 else investment_amount
 
-    return [graph, table_data, f'{end_amount}']
+    return [graph, table_data, f'{end_amount:0.2f}']
